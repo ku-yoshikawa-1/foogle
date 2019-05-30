@@ -32,3 +32,18 @@ Readme
 
   After you finish working in your branch, create "pull request". click "Branch"→"Create Pull Request".
   You will jump github web site automatically. Name your pull request and edit details. after that, click "Create Pull Request".
+
+## docker
+we use docker in order to create the same development environment.
+Pls download [docker desktop](https://www.docker.com/products/docker-desktop).
+
+### create your environment
+1. Move your foogle directory.
+2. run 
+```
+docker build -t foogle:latest .
+```
+3. run
+```
+docker container run -v [YOUR CURRENT DIRECTORY ABSOLUTE PATH]:/root -p 5000:5000 foogle
+```
