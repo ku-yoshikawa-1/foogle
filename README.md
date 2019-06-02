@@ -34,8 +34,8 @@ Readme
   You will jump github web site automatically. Name your pull request and edit details. after that, click "Create Pull Request".
 
 ## docker
-we use docker in order to create the same development environment.
-Pls download [docker desktop](https://www.docker.com/products/docker-desktop).
+we use docker in order to use Flask web server.
+Please download [docker desktop](https://www.docker.com/products/docker-desktop).
 
 ### create your environment
 1. Move your foogle directory.
@@ -47,3 +47,14 @@ docker build -t foogle:latest .
 ```
 docker container run -v [YOUR CURRENT DIRECTORY ABSOLUTE PATH]:/root -p 5000:5000 foogle
 ```
+Then, you can access to http://0.0.0.0:5000/.
+
+## Node.js
+Please Download Node.js to build your vue application.
+You can download [here](https://nodejs.org/en/download/).
+
+Then, you can use the following command in front_end directory.
+```
+npm run serve
+```
+Then, you can access to http://localhost:8080/.
