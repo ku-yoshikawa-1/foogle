@@ -55,6 +55,6 @@ You can download [here](https://nodejs.org/en/download/).
 
 Then, you can use the following command in front_end directory.
 ```
-npm run serve
+npm i && npm run serve
 ```
 Then, you can access to http://localhost:8080/.

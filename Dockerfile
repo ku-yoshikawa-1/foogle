@@ -2,7 +2,7 @@ FROM python:3.7.3
 SHELL ["/bin/bash", "-c"]
 ENV FLASK_APP /root/hello.py
 ENV FLASK_ENV development
-RUN pip install flask==1.0.3 flask-cors=3.0.7
+RUN pip install flask==1.0.3 flask-cors==3.0.7
 WORKDIR /root
 #EXPOSE 5000
 
