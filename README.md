@@ -38,7 +38,7 @@ we use docker in order to use Flask web server.
 Please download [docker desktop](https://www.docker.com/products/docker-desktop).
 
 ### create your environment
-1. Move your foogle directory.
+1. Move to your foogle directory.
 2. run 
 ```
 docker build -t foogle:latest .
@@ -51,7 +51,7 @@ Then, you can access to http://0.0.0.0:5000/.
 
 ## Node.js
 Please Download Node.js to build your vue application.
-You can download [here](https://nodejs.org/en/download/).
+You can download from [here](https://nodejs.org/en/download/).
 
 Then, you can use the following command in front_end directory.
 ```
