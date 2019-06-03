@@ -38,7 +38,7 @@ we use docker in order to use Flask web server.
 Please download [docker desktop](https://www.docker.com/products/docker-desktop).
 
 ### create your environment
-1. Move to your foogle directory.
+1. In Terminal, go to your foogle directory using "cd" command.
 2. run 
 ```
 docker build -t foogle:latest .
