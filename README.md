@@ -32,3 +32,35 @@ Readme
 
   After you finish working in your branch, create "pull request". click "Branch"→"Create Pull Request".
   You will jump github web site automatically. Name your pull request and edit details. after that, click "Create Pull Request".
+
+## docker
+we use docker in order to use Flask web server.
+Please download [docker desktop](https://www.docker.com/products/docker-desktop).
+
+### create your environment
+1. In Terminal, go to your foogle directory using "cd" command.
+
+If you dont know where is your foogle directory, pls do the following.
+
+Open Github Desktop -> Click "Repository" in Header bar -> Click "Open in Terminal".
+In the terminal, type "pwd" + Enter. You can get the foogle direcory path.
+
+2. run 
+```
+docker build -t foogle:latest .
+```
+3. run
+```
+docker container run -v [YOUR CURRENT DIRECTORY ABSOLUTE PATH]:/root -p 5000:5000 foogle
+```
+Then, you can access to http://0.0.0.0:5000/.
+
+## Node.js
+Please Download Node.js to build your vue application.
+You can download from [here](https://nodejs.org/en/download/).
+
+Then, you can use the following command in front_end directory.
+```
+npm i && npm run serve
+```
+Then, you can access to http://localhost:8080/.
