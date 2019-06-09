@@ -1,0 +1,25 @@
+{
+    
+    "box lunch":[
+        {
+            "id":1,
+            "title":"ステーキ弁当",
+            "period":"190610, 7PM-9PM",
+            "url":"https://cn.vuejs.org",
+            "location":"田中樋ノ口町",
+            "ori_price":"600円",
+            "price":"400円",
+            "quantity":"600g"
+        },
+        {
+            "id":2,
+            "title":"鲑弁当",
+            "period":"190610, 6PM-9PM",
+            "url":"https://cn.vuejs.org",
+            "location":"田中樋ノ口町",
+            "ori_price":"700円",
+            "price":"350円",
+            "quantity":"500g"
+        }
+    ]
+}
