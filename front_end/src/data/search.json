@@ -4,9 +4,12 @@
         {
             "id":1,
             "title":"ステーキ弁当",
+            "imgUrl": "https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2017/02/15/20170215-112820_U5996_M247704_4cb8.JPG?itok=_oIJ3yno",
+            "mapUrl": "https://i.ytimg.com/vi/wtXFWU4r9FQ/maxresdefault.jpg",
             "period":"190610, 7PM-9PM",
             "url":"https://cn.vuejs.org",
             "location":"田中樋ノ口町",
+            "distance": "500m",
             "ori_price":"600円",
             "price":"400円",
             "quantity":"600g"
@@ -14,9 +17,12 @@
         {
             "id":2,
             "title":"鲑弁当",
+            "imgUrl": "https://www.zhifure.com/upload/images/2018/6/2616381850.jpg",
+            "mapUrl": "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555280249/shape/mentalfloss/traffic_primary.jpg",
             "period":"190610, 6PM-9PM",
             "url":"https://cn.vuejs.org",
             "location":"田中樋ノ口町",
+            "distance": "500m",
             "ori_price":"700円",
             "price":"350円",
             "quantity":"500g"
