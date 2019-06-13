@@ -1,5 +1,6 @@
 <template>
     <div class="search-page">
+        <button type="button" @click="goHome"> Homepage </button>
         <SearchResultToolBar :search="search"/>
         <div v-for="info in searchResultList" :key="info.id">
             <SearchResultItem :info="info"/>
@@ -40,6 +41,9 @@
                     this.searchResultList = []
                 }
                 console.log("doSearchResult->",searchText,this.searchResultList)
+            },
+            goHome() {
+                this.$router.push("/")
             }
         },
         components:{

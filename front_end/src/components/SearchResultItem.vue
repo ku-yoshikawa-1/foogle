@@ -4,16 +4,9 @@
             <div class="title">{{info.title}}</div>
         </a>
         <div>
-            <script type="text/javaScript">
-                function reP(){
-                    document.getElementById('maping').style.display = "block";
-                    alert("333")
-                }
-            </script>
             <img :src="info.imgUrl" height="200" width="300"/>
-            <img :src='info.mapUrl' id="mapimg" height="200" width="300" style='display:none' />
-            <input TYPE="button" value='Display' onclick="reP()"/>
-
+            <img :src='info.mapUrl' :id="info.id" height="200" width="300" style="display: none"/>
+            <button type="button" @click="show(info.id)">Map</button>
         </div>
         <div class="period">Period: {{info.period}}</div>
         <div class="url">Website: {{info.url}}</div>
@@ -28,7 +21,18 @@
 
 <script>
     export default {
-        props:["info"]
+        props:["info"],
+        methods:{
+            show(mapid){
+                if (document.getElementById(mapid).style.display == "none"){
+                    document.getElementById(mapid).style.display = "block";
+                }
+                else {
+                    document.getElementById(mapid).style.display = "none";
+
+                }
+            }
+        },
     }
 
 </script>
