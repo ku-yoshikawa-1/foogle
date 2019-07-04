@@ -11,7 +11,6 @@ app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'MyDB'
 
 mysql = MySQL(app)
-conn = mysql.connect()
 
 
 @app.route('/')
