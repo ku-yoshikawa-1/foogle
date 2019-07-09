@@ -1,0 +1,31 @@
+version: "3"
+services:
+  flask:
+    container_name: flask
+    build: .
+    environment:
+      FLASK_APP: /root/hello.py
+      FLASK_ENV: development
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/root
+    links:
+      - mysql
+    command: >
+      python3 hello.py
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:5.7
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./db:/etc/mysql/conf.d
+      - ./db:/docker-entrypoint-initdb.d
