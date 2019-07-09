@@ -5,10 +5,10 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 CORS(app)
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'MyDB'
+app.config['MYSQL_PASSWORD'] = 'admin'
+app.config['MYSQL_DATABASE'] = 'db'
 
 mysql = MySQL(app)
 
@@ -18,6 +18,13 @@ def index():
     return jsonify({
       'test': 'Hello, API'
     })
+
+@app.route('/users')
+def users():
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT product_id FROM db.bargain_info''')
+    rv = cur.fetchall()
+    return str(rv)
 
 @app.route('/hello')
 def hello():
