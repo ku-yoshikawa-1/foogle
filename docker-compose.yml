@@ -13,13 +13,15 @@ services:
     links:
       - mysql
     command: >
-      python3 hello.py
+      python3 main.py
   mysql:
     container_name: mysql
     restart: always
-    image: mysql:5.7
+    image: mysql:latest
     ports: 
       - 3306:3306
+    expose:
+      - 3306
     environment:
       MYSQL_DATABASE: db
       MYSQL_USER: admin
@@ -27,5 +29,7 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       TZ: 'Asia/Tokyo'
     volumes:
-      - ./db:/etc/mysql/conf.d
-      - ./db:/docker-entrypoint-initdb.d
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+    command: --collation-server=utf8mb4_unicode_ci
