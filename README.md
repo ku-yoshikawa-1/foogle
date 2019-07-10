@@ -37,7 +37,8 @@ Readme
 we use docker in order to use Flask web server.
 Please download [docker desktop](https://www.docker.com/products/docker-desktop).
 
-### create your environment
+### SET UP
+You do the following at first time.
 1. In Terminal, go to your foogle directory using "cd" command.
 
 If you dont know where is your foogle directory, pls do the following.
@@ -45,15 +46,36 @@ If you dont know where is your foogle directory, pls do the following.
 Open Github Desktop -> Click "Repository" in Header bar -> Click "Open in Terminal".
 In the terminal, type "pwd" + Enter. You can get the foogle direcory path.
 
-2. run 
+2. run to initialize docker containers.
 ```
-docker build -t foogle:latest .
-```
-3. run
-```
-docker container run -v [YOUR CURRENT DIRECTORY ABSOLUTE PATH]:/root -p 5000:5000 foogle
+docker-compose run
 ```
 Then, you can access to http://0.0.0.0:5000/.
+
+### START & STOP
+After you do setup, you can stop & restart the containers.
+```
+docker-compose stop
+docker-compose start
+```
+When you check the containers,
+```
+docker-compose ps
+```
+When you delete all containers in docker-compose,
+```
+docker-compose down
+```
+### LOGIN IN MYSQL
+IF you want to login mysql server,
+```
+docker exec -it mysql bash
+```
+And then,
+```
+mysql -u root -p
+```
+password is "admin".
 
 ## Node.js
 Please Download Node.js to build your vue application.
