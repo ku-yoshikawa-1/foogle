@@ -48,7 +48,7 @@ In the terminal, type "pwd" + Enter. You can get the foogle direcory path.
 
 2. run to initialize docker containers.
 ```
-docker-compose run
+docker-compose up
 ```
 Then, you can access to http://0.0.0.0:5000/.
 
