@@ -1,5 +1,5 @@
-# Restaurant Finder App
-A simple **restaurant finder** app which is built on top of Vue.js, Zomato API and Google's Maps Javascript API. This is a Single Page Application. So you would get all the features in one place.
+# Foogle
+A simple **food finder** app which is built on top of Vue.js, Zomato API and Google's Maps Javascript API. This is a Single Page Application. So you would get all the features in one place.
 
 ## Features
 * Search by name
@@ -15,12 +15,15 @@ Assumed you've already cloned this repo. Run the following command.
 yarn install
 ```
 
-### Sets up keys
+### Sets up keys (Linux)
 As this app depends on Zomato API and Google's Map API, you need to setup those keys. Set those keys using your command line tool. 
 ```
 export VUE_APP_ZOMATO_KEY='zomato-api-key'
 export VUE_APP_GOOGLE_MAP_KEY='google-map-api-key'
 ```
+
+### Sets up keys (Windows)
+Setup the above keys as System Variables.
 
 ### Runs the APP
 To make the google map work, you have to put the domain name with port (that you put on the google to get the map api key) as the following:
