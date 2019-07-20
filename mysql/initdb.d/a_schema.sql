@@ -38,6 +38,8 @@ CREATE TABLE `bargain_info` (
   CONSTRAINT `shop_id` FOREIGN KEY (`shop_id`) REFERENCES `shop_info` (`id`)
 );
 
+ALTER USER root@'%' IDENTIFIED WITH mysql_native_password BY 'admin';
+
 --
 -- Table structure for table `product_info`
 --
