@@ -52,7 +52,7 @@
     }),
     methods: {
       getRestaurantMarkers () {
-        axios.get('/search', {
+        axios.get(`${process.env.FLASK_IP}/search`, {
           params: {
             q: this.search,
             cuisines: this.cuisine,

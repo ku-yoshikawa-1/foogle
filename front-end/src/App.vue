@@ -34,7 +34,6 @@
   import GoogleMap from './components/GoogleMap'
   import RestaurantsList from './components/RestaurantsList'
 
-
   export default {
     data: () => ({
       drawer: null,

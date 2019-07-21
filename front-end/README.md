@@ -19,7 +19,8 @@ yarn install
 As this app depends on Zomato API and Google's Map API, you need to setup those keys. Set those keys using your command line tool. 
 ```
 export VUE_APP_ZOMATO_KEY='zomato-api-key'
-export VUE_APP_GOOGLE_MAP_KEY='google-map-api-key'
+export VUE_APP_GOOGLE_MAP_KEY='AIzaSyAcPzymKE1KQxCCL1IK4su8Q6dUaKXuH4U'
+export FLASK_IP='0.0.0.0:5000'
 ```
 
 ### Sets up keys (Windows)
