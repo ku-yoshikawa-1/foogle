@@ -1,0 +1,4 @@
+[mysqld]
+character-set-server=UTF8MB4
+collation-server=utf8mb4_unicode_ci
+default_authentication_plugin=mysql_native_password

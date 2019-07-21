@@ -1,0 +1,35 @@
+version: "3"
+services:
+  flask:
+    container_name: flask
+    build: .
+    environment:
+      FLASK_APP: /root/hello.py
+      FLASK_ENV: development
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/root
+    links:
+      - mysql
+    command: >
+      python3 main.py
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:latest
+    ports: 
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+    command: --collation-server=utf8mb4_unicode_ci
