@@ -47,7 +47,7 @@ def product(product_name=None):
   col = ('product_id', 'product_name', 'category_name', 'type', 'pna1', 'pna2', 'pna3', 'cna1', 'cna2', 'cna3')
   return jsonify(dict(zip(col, rv)))
 
-@app.route('/bargain')
+@app.route('/bargains')
 def bargain():
   product = request.args.get('product')
   shop = request.args.get('shop')
@@ -63,14 +63,14 @@ def bargain():
   cur.execute(query)
   rv = cur.fetchall()
   col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', 'item_size', 'pack_type')
-  print('ok', file=sys.stderr)
+  
   return jsonify(list(map(lambda x: dict(zip(col, x)), rv)))
 
 @app.route('/search')
 def search():
-  products = request.args.get('products')
-  shops = request.args.get('product')
-  return recommend(products, shops)
+  products = request.args.get('products').split(',') if request.args.get('products') else ()
+  shops = request.args.get('shops').split(',') if request.args.get('shops') else ()
+  return recommend(products, shops, mysql)
 
 if __name__ == '__main__':
   app.run(debug=True,host='0.0.0.0')
