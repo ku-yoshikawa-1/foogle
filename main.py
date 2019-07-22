@@ -11,6 +11,7 @@ app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE'] = 'db'
+app.config['JSON_AS_ASCII'] = False
 
 mysql = MySQL(app)
 
