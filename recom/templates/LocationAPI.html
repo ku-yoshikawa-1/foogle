@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location</title>
+
+
+</head>
+
+<body>
+<form method="post">
+
+    <label>FOOGLE</label><input type="text" name="username"><br>
+    <input type="submit" value="Search"><br>
+    <p id="output" name="output"></p>
+
+</form>
+
+
+
+<script type="text/javascript">
+    var output=document.getElementById("output");
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{output.innerHTML="Geolocation is not supported by this browser.";}
+    }
+    function showPosition(position)
+    {
+        output.innerHTML="Latitude: " + position.coords.latitude +
+            "<br />Longitude: " + position.coords.longitude;
+    }
+    getLocation()
+</script>
+
+</body>
+</html>
