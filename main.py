@@ -30,21 +30,23 @@ def my_profile():
   col = ('user_id', 'first_name', 'last_name')
   return jsonify(dict(zip(col, rv)))
 
-@app.route('/shops/<shop_name>')
-def shop(shop_name=None):
+@app.route('/shops')
+def shop():
+  shop_name = request.args.get('shop_name')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.shop_info
     WHERE shop_name = \'%s\'''' % (shop_name))
   rv = cur.fetchall()[0]
-  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description')
+  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description', 'photo')
   return jsonify(dict(zip(col, rv)))
 
-@app.route('/products/<product_name>')
-def product(product_name=None):
+@app.route('/products')
+def product():
+  product_name = request.args.get('product_name')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.product_info
     WHERE product_name = \'%s\'''' % (product_name))
-  rv = cur.fetchall()
+  rv = cur.fetchall()[0]
   col = ('product_id', 'product_name', 'category_name', 'type', 'pna1', 'pna2', 'pna3', 'cna1', 'cna2', 'cna3')
   return jsonify(dict(zip(col, rv)))
 
