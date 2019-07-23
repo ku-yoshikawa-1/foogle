@@ -8,9 +8,9 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 
 
 // Sets defaults
-axios.defaults.baseURL = 'https://developers.zomato.com/api/v2.1'
+axios.defaults.baseURL = 'http://localhost:5000'
 axios.defaults.headers.common['Accept'] = "application/json"
-axios.defaults.headers.common['user-key'] = process.env.VUE_APP_ZOMATO_KEY;
+// axios.defaults.headers.common['user-key'] = process.env.VUE_APP_ZOMATO_KEY;
 
 // Registers plugins
 Vue.use(Vuex)

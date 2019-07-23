@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <!-- Card image -->
+<!--     Card image -->
     <v-img
       :src="marker.featuredImg"
       aspect-ratio="2.75"
@@ -20,9 +20,13 @@
     <!-- Card details -->
     <v-card-title primary-title>
       <div>
-        <h3 class="headline mb-0">{{ marker.name }}</h3>
-        <p><strong>{{ marker.cuisines }}</strong></p>
-        <div>{{ marker.address }}</div>
+        <h3 class="headline mb-0">{{ marker.product_name }}</h3>
+        <p><strong>Original Price: {{ marker.ori_price }}</strong></p>
+        <div>Price: {{ marker.price }}</div>
+        <div>Deadline: {{ marker.end_time }}</div>
+        <div>Size: {{ marker.item_size }}</div>
+        <div>From: {{ marker.shop_name }}</div>
+        <div>Price: {{ marker.price }}</div>
       </div>
     </v-card-title>
   </v-card>

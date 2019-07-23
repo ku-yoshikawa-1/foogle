@@ -37,8 +37,8 @@
     data: () => ({
       zoom: 10,
       center: {
-        lat: 28.6139,
-        lng: 77.2090
+        lat: 35.02632,
+        lng: 135.78095,
       },
       infoContent: {},
       infoWindowPos: null,
