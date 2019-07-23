@@ -1,10 +1,11 @@
 from get_location import get_value
-user_loc = get_value()
 
-#
-# def get_distance():
-#
-#
-#
+
+def get_distance(coordinate):
+
+    print("hello")
+
+
+
 #
 # print(get_distance())

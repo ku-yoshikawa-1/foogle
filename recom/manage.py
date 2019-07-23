@@ -53,7 +53,6 @@
 # def distance(user, shop):
 #
 import numpy as np
-import numpy as nplkdsdfa525255
 from numpy import *
 from numpy import genfromtxt
 from sklearn.preprocessing import StandardScaler
@@ -64,39 +63,42 @@ from keras.models import Model
 from keras.optimizers import Adagrad
 from keras.utils import to_categorical
 
-# get_distance()
-
-def get_training():
+# to get the history of users that he clicks food he likes
+def get_trainingdata():
     train_data = genfromtxt('training_data.csv', delimiter=',')
     return train_data
 
-def get_recommend():
+
+# to get the food & user info so that we can train
+def get_recommenddata():
     rec_data = genfromtxt('recommend.csv', delimiter=',')
     return rec_data
 
 
+# get the training model of a user
 def training():
 
-    #import data
-    train_data = get_training()
+# import data
+    train_data = get_trainingdata()
     X = train_data[:, 0:6]
     y = train_data[:, 6]
     number_samples = X.shape[0]
     training_ratio = 0.8
     train_samples = int(training_ratio * number_samples)
-
     X_train = X[:train_samples]
     y_train = y[:train_samples]
     X_test = X[train_samples:]
     y_test = y[train_samples:]
 
-    # standarization
+
+# standarization
     scaler = StandardScaler()
     scaler.fit(X_train)
     X_train = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
 
-    # model neural network
+
+# model neural network
     input_shape = X_train[0].shape
     vector_input = Input(shape=input_shape, name='input')
     fc1 = Dense(10, activation='tanh', name='fc1')(vector_input)
@@ -107,29 +109,30 @@ def training():
     y_train_one_hot = to_categorical(y_train)
     y_test_one_hot = to_categorical(y_test)
     H = network.fit(X_train, y_train_one_hot, batch_size=10, epochs=50, validation_data=(X_test, y_test_one_hot))
-
-    y_pred_one_hot = network.predict(X_test)
-    y_pred = np.argmax(y_pred_one_hot, axis=1)
+    # y_pred_one_hot = network.predict(X_test)
+    # y_pred = np.argmax(y_pred_one_hot, axis=1)
     return network
 
 
 def calculation():
 
-    # get trained network
     network = training()
 
-    # get and standarize data.
+    rec_data = get_recommenddata()
+    index = rec_data[:,0]
+    X_input = rec_data[:,1:]
 
-    rec_data= get_recommend()
-    X_input=rec_data[:,1:]
     scaler = StandardScaler()
     scaler.fit(X_input)
     X_input = scaler.transform(X_input)
 
     y_pred_one_hot = network.predict(X_input)
     y_pred = np.argmax(y_pred_one_hot, axis=1)
-    book =[]
-    return y_pred
+    for i in range(len(X_input)):
+        if y_pred[i]== 1:
+            print(index[i])
+
+    return index[i]
 
 
 # def recommend():
@@ -145,8 +148,7 @@ def calculation():
 #     print(result)
 
 if __name__ == '__main__':
-    print(calculation())
-
+    calculation()
     # price=get_price()
     # distance=get_distance()
     # time=get_time()
