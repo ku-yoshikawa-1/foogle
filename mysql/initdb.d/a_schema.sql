@@ -102,7 +102,9 @@ CREATE TABLE `shop_info` (
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
   `brand` varchar(45) DEFAULT NULL,
-  `shop_descriptioncol` varchar(45) DEFAULT NULL,
+  `shop_description` varchar(100) DEFAULT NULL,
+  `url` varchar(5000) DEFAULT NULL,
+  `photo` varchar(5000) DEFAULT NULL,
   PRIMARY KEY (`shop_id`),
   UNIQUE KEY `id_UNIQUE` (`shop_id`),
   UNIQUE KEY `shop_name_UNIQUE` (`shop_name`)
@@ -115,7 +117,7 @@ CREATE TABLE `shop_info` (
 
 LOCK TABLES `shop_info` WRITE;
 /*!40000 ALTER TABLE `shop_info` DISABLE KEYS */;
-INSERT INTO `shop_info` VALUES (102,'ライフ川端東一条店',35.0257,135.773,'ライフ',NULL),(103,'フレスコ 白川店',35.0235,135.792,'フレスコ',NULL),(104,'大国屋 白川店',35.0289,135.791,'大国屋',NULL),(105,'イオン東山二条店',35.0141,135.776,'イオン',NULL),(106,'フレスコ 岡崎店',35.0166,135.788,'フレスコ',NULL),(107,'フレスコ 川端店',35.0117,135.773,'フレスコ',NULL),(108,'生鮮館なかむら センター',35.0319,135.78,'生鮮館なかむら',NULL),(109,'グレースたなか',35.0322,135.78,'',NULL),(110,'生鮮館なかむら 里の前店',35.0334,135.78,'生鮮館なかむら',NULL),(111,'フレスコミニ 田中里ノ前店',35.0341,135.78,'フレスコミニ',NULL),(112,'メルシーマルギン',35.0281,135.792,'',NULL),(113,'ライフ北白川店',35.0381,135.791,'ライフ',NULL),(114,'イズミヤ 高野店',35.0411,135.781,'イズミヤ',NULL),(115,'新鮮食品館 アイハート 出町店',35.0303,135.769,'新鮮食品館 アイハート',NULL),(116,'フレスコミニ 河原町今出川店',35.0282,135.77,'フレスコミニ',NULL),(117,'フレスコ 河原町丸太町店',35.0174,135.771,'フレスコ',NULL),(118,'MEIDI-YA STORE 京都三條ストアー',35.009,135.77,'MEIDI-YA STORE',NULL),(119,'三杉屋 ゼスト御池店',35.0107,135.768,'三杉屋',NULL),(120,'フレスコ プチ 東山三条店',35.0084,135.778,'フレスコ プチ',NULL),(121,'ＹＡＯＳＥＮ',35.0173,135.785,'',NULL);
+INSERT INTO `shop_info` VALUES (102,'ライフ川端東一条店',35.0257,135.773,'ライフ',NULL,'lifecorp.jp','https://lh5.googleusercontent.com/p/AF1QipNwx8i66KxwkgEGyTSg6_bEVRvhfWx3IghMfm1m=w426-h240-k-no'),(103,'フレスコ 白川店',35.0235,135.792,'フレスコ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipN03HiCJxv3bnLerPAiucYgkRd5RHbA_pogrwog=w426-h240-k-no'),(104,'大国屋 白川店',35.0289,135.791,'大国屋',NULL,'super-daikokuya.com','https://lh5.googleusercontent.com/p/AF1QipOuHD3r9gbMln4nzZRqRwtJkvpcbQs0BZ66OSDC=w408-h271-k-no'),(105,'イオン東山二条店',35.0141,135.776,'イオン',NULL,'aeon.com','https://lh5.googleusercontent.com/p/AF1QipOgK6gtDyZw1aHWNHsO8iJsYAjEsFDZx-cv1rtA=w408-h544-k-no'),(106,'フレスコ 岡崎店',35.0166,135.788,'フレスコ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipOSS_rUhRCCl9uZtVEntX-7w7hAQ5tirxQOcY85=w426-h240-k-no'),(107,'フレスコ 川端店',35.0117,135.773,'フレスコ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipOVhNQav5sC9RHXvZ7_IqFRvutxNXipREbZn7og=w408-h300-k-no'),(108,'生鮮館なかむら センター',35.0319,135.78,'生鮮館なかむら',NULL,'seisenkan-nakamura.co.jp','https://lh5.googleusercontent.com/p/AF1QipNt7mxJOacdaavLQzbtJubbEci11OphaDK0UqLH=w408-h544-k-no'),(109,'グレースたなか',35.0322,135.78,'',NULL,'gracetanaka.co.jp','https://lh5.googleusercontent.com/p/AF1QipM4E9gGsYjUsXd4tX0JnSRW-W36gBY0jhMZJXRB=w408-h725-k-no'),(110,'生鮮館なかむら 里の前店',35.0334,135.78,'生鮮館なかむら',NULL,'seisenkan-nakamura.co.jp','https://lh5.googleusercontent.com/p/AF1QipNt7mxJOacdaavLQzbtJubbEci11OphaDK0UqLH=w408-h544-k-no'),(111,'フレスコミニ 田中里ノ前店',35.0341,135.78,'フレスコミニ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipOLTbjCHHAVATNBps1lWuBxAHQqDUwNxPmIDokv=w408-h271-k-no'),(112,'メルシーマルギン',35.0281,135.792,'',NULL,'\nmercimarugin.jp','https://lh5.googleusercontent.com/p/AF1QipN4iQ3LISCzwZC9yAzWm3gfVMsoydwEp2f_tFMn=w408-h306-k-no'),(113,'ライフ北白川店',35.0381,135.791,'ライフ',NULL,'lifecorp.jp','https://lh5.googleusercontent.com/p/AF1QipOyB1AgqHh-l6mtCXqUST93hqCrk3-xtYbfD_ZB=w408-h544-k-no'),(114,'イズミヤ 高野店',35.0411,135.781,'イズミヤ',NULL,'\nizumiya.co.jp','https://lh5.googleusercontent.com/p/AF1QipPI4dGaShYd2beWcv6BsY-gT7x-78u2dsRHMNge=w426-h240-k-no'),(115,'新鮮食品館 アイハート 出町店',35.0303,135.769,'新鮮食品館 アイハート',NULL,'\nsuper-iheart.jp','https://lh5.googleusercontent.com/p/AF1QipOHy8b3QCpjROVlHIqh6C5W9mPJkrepmXx5bEoc=w426-h240-k-no'),(116,'フレスコミニ 河原町今出川店',35.0282,135.77,'フレスコミニ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipOL0GPaCDRYwxmWgmvWz_TrIDemegy8etcXQHOq=w426-h240-k-no'),(117,'フレスコ 河原町丸太町店',35.0174,135.771,'フレスコ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipPXsEdADMmQ_DIRVDbKdbKOGXir8PzABtr_jPlZ=w408-h306-k-no'),(118,'MEIDI-YA STORE 京都三條ストアー',35.009,135.77,'MEIDI-YA STORE',NULL,'\nmeidi-ya-store.com','https://lh5.googleusercontent.com/p/AF1QipOwOA8ILePFwSV69M1f4dXEXhIgtZFKxHFXk8sY=w408-h306-k-no'),(119,'三杉屋 ゼスト御池店',35.0107,135.768,'三杉屋',NULL,'misugiya.com','https://lh5.googleusercontent.com/p/AF1QipNKZCRAUU4JT81kRyer8F4VCIzf1tNAMo7IEq6K=w408-h335-k-no'),(120,'フレスコ プチ 東山三条店',35.0084,135.778,'フレスコ プチ',NULL,'super-fresco.co.jp','https://lh5.googleusercontent.com/p/AF1QipMevqOIowVYpXmFJhDKRVIwDFhNMAuhqAY-ms3A=w408-h306-k-no'),(121,'ＹＡＯＳＥＮ',35.0173,135.785,'',NULL,'http://yao-sen.co.jp/','https://lh5.googleusercontent.com/p/AF1QipM6UKJeO97xPWRbmHeO3G4iZtG8o7m19Y17GJVj=w426-h240-k-no');
 /*!40000 ALTER TABLE `shop_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-19 15:16:17
+-- Dump completed on 2019-07-23 13:35:52
