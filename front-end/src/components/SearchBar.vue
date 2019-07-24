@@ -21,8 +21,8 @@
           label="Category"
           item-text="text"
           item-value="value"
-          :items="cuisines"
-          v-model="cuisine"
+          :items="types"
+          v-model="type"
         ></v-select>
       </v-flex>
 
@@ -46,40 +46,49 @@
 
   export default {
     data: () => ({
-      search: 'thai',
-      cuisine: 0,
-      cuisines: [],
+      search: 'ほうれん草',
+      type: 'Recommender',
+      types: ['Recommender','Products','Shops'],
+      searchResults:[]
     }),
     methods: {
       getRestaurantMarkers () {
-        axios.get(`${process.env.FLASK_IP}/search`, {
+        axios.get(`/bargains`, {
           params: {
-            q: this.search,
-            cuisines: this.cuisine,
+            product: this.search,
           }
         })
           .then(response => {
-            if (response.data && response.data.restaurants.length > 0) {
+            if (response.data && response.data.length > 0) {
               // Prepares markers
-              const markers = response.data.restaurants.map(restaurant => {
+              const markers = response.data.map(bargain => {
                 return {
-                  id: restaurant.restaurant.id,
-                  name: restaurant.restaurant.name,
-                  thumb: restaurant.restaurant.thumb,
-                  cuisines: restaurant.restaurant.cuisines,
-                  address: restaurant.restaurant.location.address,
-                  featuredImg: restaurant.restaurant.featured_image,
-                  locality: restaurant.restaurant.location.locality_verbose,
+                  end_time: bargain.end_time,
+                  id: bargain.id,
+                  item_size: bargain.item_size,
+                  pack_ll: bargain.pack_ll,
+                  pack_ul: bargain.pack_ul,
+                  pack_type: bargain.pack_type,
+                  price: bargain.price,
+                  ori_price: parseInt(bargain.price * 1.3),
+                  price_peritem: bargain.price_peritem,
+                  product_name: bargain.product_name,
+                  // address: restaurant.restaurant.location.address,
+                  featuredImg: "https://img.kurashinista.jp/get/2019/02/12/7c04e57109036c5c9392408841aa7573.jpg?size=700&v=1",
+                  shop_name: bargain.shop_name,
+                  // descrip: shop.shop.shop_description,
                   position: {
-                    lat: parseFloat(restaurant.restaurant.location.latitude),
-                    lng: parseFloat(restaurant.restaurant.location.longitude),
+                    lat: parseFloat(bargain.latitude),
+                    lng: parseFloat(bargain.longitude),
                   },
+                  shop_img: bargain.shop_img,
+                  shop_url: bargain.shop_url
                 }
               })
 
               // Initializes various states
               this.$store.dispatch('initSearch', this.search)
-              this.$store.dispatch('initCuisine', this.cuisine)
+              this.$store.dispatch('initType', this.type)
               this.$store.dispatch('initMarkers', markers)
 
               // Updates center position of the map
@@ -91,30 +100,30 @@
           })
       }
     },
-    created () {
-      // Gets cuisines as defaults
-      axios.get('/cuisines', {
-        params: {
-          lat: 1.0,
-          lon: 1.0,
-        }
-      })
-        .then( response => {
-          if (response.data && response.data.cuisines.length > 0) {
-            const cuisines = response.data.cuisines.map(cuisine => {
-              return {
-                text: cuisine.cuisine.cuisine_name,
-                value: cuisine.cuisine.cuisine_id,
-              }
-            })
-
-            cuisines.unshift({ text: 'Choose Cuisine', value: 0 })
-            this.cuisines = cuisines
-          }
-        })
-        .catch(error => {
-          alert(error.message)
-        })
-    }
+    // created () {
+    //   // Gets cuisines as defaults
+    //   axios.get('/cuisines', {
+    //     params: {
+    //       lat: 1.0,
+    //       lon: 1.0,
+    //     }
+    //   })
+    //     .then( response => {
+    //       if (response.data && response.data.cuisines.length > 0) {
+    //         const cuisines = response.data.cuisines.map(cuisine => {
+    //           return {
+    //             text: cuisine.cuisine.cuisine_name,
+    //             value: cuisine.cuisine.cuisine_id,
+    //           }
+    //         })
+    //
+    //         cuisines.unshift({ text: 'Choose Cuisine', value: 0 })
+    //         this.cuisines = cuisines
+    //       }
+    //     })
+    //     .catch(error => {
+    //       alert(error.message)
+    //     })
+    // }
   }
 </script>

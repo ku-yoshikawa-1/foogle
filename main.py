@@ -32,7 +32,7 @@ def my_profile():
 
 @app.route('/shops')
 def shop():
-  shop_name = request.args.get('shop_name')
+  shop_name = request.args.get('shop')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.shop_info
     WHERE shop_name = \'%s\'''' % (shop_name))
@@ -42,7 +42,7 @@ def shop():
 
 @app.route('/products')
 def product():
-  product_name = request.args.get('product_name')
+  product_name = request.args.get('product')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.product_info
     WHERE product_name = \'%s\'''' % (product_name))
@@ -65,9 +65,18 @@ def bargain():
 
   cur.execute(query)
   rv = cur.fetchall()
-  col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', 'item_size', 'pack_type')
+  response = []
+  for row in rv:
+    shop_name = row[2]
+    cur.execute('''SELECT * FROM db.shop_info
+        WHERE shop_name = \'%s\'''' % (shop_name))
+    shop_rv = cur.fetchall()[0]
+    shop_info = tuple([shop_rv[2], shop_rv[3], shop_rv[6], shop_rv[7]])
+    response.append(row + shop_info)
+  col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', \
+         'item_size', 'pack_type', 'latitude', 'longitude', 'shop_url', 'shop_img')
   
-  return jsonify(list(map(lambda x: dict(zip(col, x)), rv)))
+  return jsonify(list(map(lambda x: dict(zip(col, x)), response)))
 
 @app.route('/search')
 def search():

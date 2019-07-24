@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.21",
     "vue-infinite-loading": "^2.4.3",
     "vue2-google-maps": "^0.10.5",

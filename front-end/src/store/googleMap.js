@@ -1,8 +1,8 @@
 export default {
   state () {
     return {
-      search: 'thai',
-      cuisine: 0,
+      search: 'ほうれん草',
+      type: 'Recommender',
       markers: [],
     }
   },
@@ -10,8 +10,8 @@ export default {
     'SET_SEARCH' (state, search) {
       state.search = search
     },
-    'SET_CUISINE' (state, cuisine) {
-      state.cuisine = cuisine
+    'SET_TYPE' (state, type) {
+      state.type = type
     },
     'SET_MARKERS' (state, markers) {
       state.markers = markers
@@ -24,8 +24,8 @@ export default {
     initSearch: ({ commit }, search) => {
       commit('SET_SEARCH', search)
     },
-    initCuisine: ({ commit }, cuisine) => {
-      commit('SET_CUISINE', cuisine)
+    initType: ({ commit }, type) => {
+      commit('SET_TYPE', type)
     },
     initMarkers: ({ commit }, markers) => {
       commit('SET_MARKERS', markers)
@@ -36,7 +36,7 @@ export default {
   },
   getters: {
     search: state => state.search,
-    cuisine: state => state.cuisine,
+    type: state => state.type,
     markers: state => state.markers,
   }
 }

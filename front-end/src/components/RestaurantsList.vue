@@ -5,7 +5,7 @@
       <!-- Restaurant list -->
       <v-list-tile
         ripple
-        :key="marker.title"
+        :key="marker.product_name"
         @click="onClickList(marker, index)"
       >
         <!-- Restaurant avatar -->
@@ -16,7 +16,7 @@
         >
           <v-img
             aspect-ratio="1"
-            :src="marker.thumb"
+            :src="marker.shop_img"
             class="grey lighten-2"
           >
             <v-layout
@@ -33,9 +33,10 @@
 
         <!-- Restaurant short desc -->
         <v-list-tile-content>
-          <v-list-tile-title>{{ marker.name }}</v-list-tile-title>
-          <v-list-tile-sub-title class="text--primary">{{ marker.cuisines }}</v-list-tile-sub-title>
-          <v-list-tile-sub-title>{{ marker.locality }}</v-list-tile-sub-title>
+          <v-list-tile-title>{{ marker.product_name }}</v-list-tile-title>
+          <v-list-tile-sub-title class="text--primary">Price: {{ marker.price }}</v-list-tile-sub-title>
+          <v-list-tile-sub-title>Original Price: {{ marker.ori_price }}</v-list-tile-sub-title>
+          <v-list-tile-sub-title>Quantity: {{ marker.pack_ll }} to {{ marker.pack_ul }}</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
 
@@ -69,7 +70,7 @@
     computed: {
       ...mapGetters([
         'search',
-        'cuisine',
+        'type',
         'markers',
       ])
     },
@@ -78,30 +79,39 @@
         eventManager.$emit('isRestaurantClicked', marker, index)
       },
       infiniteHandler($state) {
-        axios.get('/search', {
+        axios.get('/bargains', {
           params: {
-            q: this.search,
+            product: this.search,
             start: this.start,
-            cuisines: this.cuisine,
           }
         })
           .then(response => {
-            if (response.data && this.start < parseInt(response.data.results_found + 20)) {
-              const appendMarkers = response.data.restaurants.map(restaurant => {
+            if (response.data && this.start < parseInt(response.data.length + 20)) {
+              const appendMarkers = response.data.map(bargain => {
                 return {
-                  id: restaurant.restaurant.id,
-                  name: restaurant.restaurant.name,
-                  thumb: restaurant.restaurant.thumb,
-                  cuisines: restaurant.restaurant.cuisines,
-                  address: restaurant.restaurant.location.address,
-                  featuredImg: restaurant.restaurant.featured_image,
-                  locality: restaurant.restaurant.location.locality_verbose,
+                  end_time: bargain.end_time,
+                  id: bargain.id,
+                  item_size: bargain.item_size,
+                  pack_ll: bargain.pack_ll,
+                  pack_ul: bargain.pack_ul,
+                  pack_type: bargain.pack_type,
+                  price: bargain.price,
+                  ori_price: parseInt(bargain.price * 1.3),
+                  price_peritem: bargain.price_peritem,
+                  product_name: bargain.product_name,
+                  // address: restaurant.restaurant.location.address,
+                  featuredImg: "https://img.kurashinista.jp/get/2019/02/12/7c04e57109036c5c9392408841aa7573.jpg?size=700&v=1",
+                  shop_name: bargain.shop_name,
+                  // descrip: shop.shop.shop_description,
                   position: {
-                    lat: parseFloat(restaurant.restaurant.location.latitude),
-                    lng: parseFloat(restaurant.restaurant.location.longitude),
+                    lat: parseFloat(bargain.latitude),
+                    lng: parseFloat(bargain.longitude),
                   },
+                  shop_img: bargain.shop_img,
+                  shop_url: bargain.shop_url
                 }
               })
+
 
               // Increases the start
               this.start += 20
