@@ -21,8 +21,7 @@
     <v-content>
       <v-container fluid fill-height class="grey lighten-4">
         <v-layout>
-          <!-- Google map -->
-          <app-google-map></app-google-map>
+          <router-view/>
         </v-layout>
       </v-container>
     </v-content>
@@ -31,7 +30,6 @@
 
 <script>
   import SearchBar from './components/SearchBar'
-  import GoogleMap from './components/GoogleMap'
   import Sidebar from './components/Sidebar'
   import { mapGetters } from 'vuex'
 
@@ -43,7 +41,6 @@
     },
     components: {
       appSearchBar: SearchBar,
-      appGoogleMap: GoogleMap,
       appSidebar: Sidebar,
     }
   }
