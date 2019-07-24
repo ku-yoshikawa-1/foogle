@@ -33,10 +33,10 @@ Description: collection the preference of users, we use 100 data to train. It wi
 - price of food on sale,the range is from 100 ~ 5000 yen .
 - distance between shop and user, the range is from 0.1 ~ 10.0 km, which is computed by "distance.py"
 - end_time means end_time means the how long the discount will expire. The range is from 1 ~ 30 days
-- category means type of food, Fruit:0, Vegetable:1, Meat:2.
-- gender, man or woman, man denoted as 1, woman denoted as 0
-- occupation has four types : no job, part-time job, full-time job, denoted as 0, 1, 2 respectively.
 - tag means he how he like the food. 1 means he likes and he would he there, 0 means he wouldn't consider it.
+//- category means type of food, Fruit:0, Vegetable:1, Meat:2.
+//- gender, man or woman, man denoted as 1, woman denoted as 0
+//- occupation has four types : no job, part-time job, full-time job, denoted as 0, 1, 2 respectively.
 
 # recommend.csv
 
@@ -46,6 +46,6 @@ Description: we get this table  for recommendation system
 - price of food on sale,the range is from 100 ~ 5000 yen .
 - distance between shop and user, the range is from 0.1 ~ 10.0 km, which is computed by "distance.py"
 - end_time means end_time means the how long the discount will expire. The range is from 1 ~ 30 days
-- category means type of food, Fruit:0, Vegetable:1, Meat:2.
-- gender, man or woman, man denoted as 1, woman denoted as 0
-- occupation has four types : no job, part-time job, full-time job, denoted as 0, 1, 2 respectively.
+//- category means type of food, Fruit:0, Vegetable:1, Meat:2.
+//- gender, man or woman, man denoted as 1, woman denoted as 0
+//- occupation has four types : no job, part-time job, full-time job, denoted as 0, 1, 2 respectively.
