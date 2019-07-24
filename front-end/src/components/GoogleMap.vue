@@ -3,6 +3,7 @@
   <gmap-map
     :zoom="zoom"
     :center="center"
+    language=en
     style="width: 100%; height: 100%"
   >
     <!-- Markers -->
@@ -35,7 +36,7 @@
 
   export default {
     data: () => ({
-      zoom: 10,
+      zoom: 15,
       center: {
         lat: 35.02632,
         lng: 135.78095,

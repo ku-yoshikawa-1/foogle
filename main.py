@@ -30,21 +30,23 @@ def my_profile():
   col = ('user_id', 'first_name', 'last_name')
   return jsonify(dict(zip(col, rv)))
 
-@app.route('/shops/<shop_name>')
-def shop(shop_name=None):
+@app.route('/shops')
+def shop():
+  shop_name = request.args.get('shop')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.shop_info
     WHERE shop_name = \'%s\'''' % (shop_name))
   rv = cur.fetchall()[0]
-  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description')
+  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description', 'url', 'photo')
   return jsonify(dict(zip(col, rv)))
 
-@app.route('/products/<product_name>')
-def product(product_name=None):
+@app.route('/products')
+def product():
+  product_name = request.args.get('product')
   cur = mysql.connection.cursor()
   cur.execute('''SELECT * FROM db.product_info
     WHERE product_name = \'%s\'''' % (product_name))
-  rv = cur.fetchall()
+  rv = cur.fetchall()[0]
   col = ('product_id', 'product_name', 'category_name', 'type', 'pna1', 'pna2', 'pna3', 'cna1', 'cna2', 'cna3')
   return jsonify(dict(zip(col, rv)))
 
@@ -63,9 +65,18 @@ def bargain():
 
   cur.execute(query)
   rv = cur.fetchall()
-  col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', 'item_size', 'pack_type')
+  response = []
+  for row in rv:
+    shop_name = row[2]
+    cur.execute('''SELECT * FROM db.shop_info
+        WHERE shop_name = \'%s\'''' % (shop_name))
+    shop_rv = cur.fetchall()[0]
+    shop_info = tuple([shop_rv[2], shop_rv[3], shop_rv[6], shop_rv[7]])
+    response.append(row + shop_info)
+  col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', \
+         'item_size', 'pack_type', 'latitude', 'longitude', 'shop_url', 'shop_img')
   
-  return jsonify(list(map(lambda x: dict(zip(col, x)), rv)))
+  return jsonify(list(map(lambda x: dict(zip(col, x)), response)))
 
 @app.route('/search')
 def search():

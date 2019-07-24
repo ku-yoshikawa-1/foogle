@@ -47,7 +47,7 @@
   export default {
     data: () => ({
       search: 'ほうれん草',
-      type: 'Products',
+      type: 'Recommender',
       types: ['Recommender','Products','Shops'],
       searchResults:[]
     }),
@@ -66,6 +66,9 @@
                   end_time: bargain.end_time,
                   id: bargain.id,
                   item_size: bargain.item_size,
+                  pack_ll: bargain.pack_ll,
+                  pack_ul: bargain.pack_ul,
+                  pack_type: bargain.pack_type,
                   price: bargain.price,
                   ori_price: parseInt(bargain.price * 1.3),
                   price_peritem: bargain.price_peritem,
@@ -75,11 +78,11 @@
                   shop_name: bargain.shop_name,
                   // descrip: shop.shop.shop_description,
                   position: {
-                    // lat: parseFloat(bargain.bargain.latitude),
-                    // lng: parseFloat(bargain.bargain.longitude),
-                    lat: 35.02632 + Math.random()*0.01,
-                    lng: 135.78095 + Math.random()*0.01,
+                    lat: parseFloat(bargain.latitude),
+                    lng: parseFloat(bargain.longitude),
                   },
+                  shop_img: bargain.shop_img,
+                  shop_url: bargain.shop_url
                 }
               })
 

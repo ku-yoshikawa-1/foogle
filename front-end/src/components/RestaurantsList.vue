@@ -16,7 +16,7 @@
         >
           <v-img
             aspect-ratio="1"
-            :src="marker.featuredImg"
+            :src="marker.shop_img"
             class="grey lighten-2"
           >
             <v-layout
@@ -35,7 +35,8 @@
         <v-list-tile-content>
           <v-list-tile-title>{{ marker.product_name }}</v-list-tile-title>
           <v-list-tile-sub-title class="text--primary">Price: {{ marker.price }}</v-list-tile-sub-title>
-          <v-list-tile-sub-title>{{ marker.ori_price }}</v-list-tile-sub-title>
+          <v-list-tile-sub-title>Original Price: {{ marker.ori_price }}</v-list-tile-sub-title>
+          <v-list-tile-sub-title>Quantity: {{ marker.pack_ll }} to {{ marker.pack_ul }}</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
 
@@ -91,6 +92,9 @@
                   end_time: bargain.end_time,
                   id: bargain.id,
                   item_size: bargain.item_size,
+                  pack_ll: bargain.pack_ll,
+                  pack_ul: bargain.pack_ul,
+                  pack_type: bargain.pack_type,
                   price: bargain.price,
                   ori_price: parseInt(bargain.price * 1.3),
                   price_peritem: bargain.price_peritem,
@@ -100,13 +104,14 @@
                   shop_name: bargain.shop_name,
                   // descrip: shop.shop.shop_description,
                   position: {
-                    // lat: parseFloat(bargain.bargain.latitude),
-                    // lng: parseFloat(bargain.bargain.longitude),
-                    lat: 35.02632 + Math.random()*0.01,
-                    lng: 135.78095 + Math.random()*0.01,
+                    lat: parseFloat(bargain.latitude),
+                    lng: parseFloat(bargain.longitude),
                   },
+                  shop_img: bargain.shop_img,
+                  shop_url: bargain.shop_url
                 }
               })
+
 
               // Increases the start
               this.start += 20
