@@ -37,7 +37,7 @@ def shop():
   cur.execute('''SELECT * FROM db.shop_info
     WHERE shop_name = \'%s\'''' % (shop_name))
   rv = cur.fetchall()[0]
-  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description', 'photo')
+  col = ('shop_id', 'shop_name', 'latitude', 'longitude', 'brand', 'shop_description', 'url', 'photo')
   return jsonify(dict(zip(col, rv)))
 
 @app.route('/products')
