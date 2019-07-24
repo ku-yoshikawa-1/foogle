@@ -2,12 +2,12 @@
   <v-form :style="{ width: '100%' }">
     <v-layout align-start justify-start row mt-2>
       <!-- Search box -->
-      <v-flex md8>
+      <v-flex md6>
         <v-text-field
           solo
           flat
           hide-details
-          v-model="search"
+          v-model="query"
           label="Type food name"
           prepend-inner-icon="search"
         ></v-text-field>
@@ -21,8 +21,8 @@
           label="Category"
           item-text="text"
           item-value="value"
-          :items="types"
-          v-model="type"
+          :items="searchTypes"
+          v-model="searchType"
         ></v-select>
       </v-flex>
 
@@ -47,10 +47,10 @@
 
   export default {
     data: () => ({
-      search: '',
-      type: 'Recommender',
-      types: ['Recommender','Products','Shops'],
-      searchResults:[]
+      query: '',
+      searchType: 'Recommender',
+      searchTypes: ['Recommender','Products','Shops'],
+      searchResults:[],
     }),
     computed: {
       ...mapGetters([
@@ -61,7 +61,7 @@
       getBargains () {
         axios.get(`/bargains`, {
           params: {
-            product: this.search,
+            product: this.query,
           }
         })
           .then(response => {
@@ -93,9 +93,9 @@
               })
 
               // Initializes various states
-              this.$store.dispatch('initSearch', this.search)
-              this.$store.dispatch('initType', this.type)
-              this.$store.dispatch('initMarkers', markers)
+              this.$store.dispatch('setQuery', this.query)
+              this.$store.dispatch('setSearchType', this.searchType)
+              this.$store.dispatch('setMarkers', markers)
               this.$store.dispatch('toogle_sidebar', true)
 
               // Updates center position of the map
