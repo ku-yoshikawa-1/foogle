@@ -58,7 +58,6 @@
               }
             })
 
-            console.log(bargains)
             this.bargains = bargains
             
           }
