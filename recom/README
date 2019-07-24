@@ -1,28 +1,3 @@
-# bargain_info.csv
-
-Description:bargain_info is information about food on sale, apart from distance is computed, other attributes can
-straightly come from bargain table
-
- [food_id,price,distance,end_time]
-
--food_id means the identification of food, which is unique. we use 1000 foods
--price means the price of the food.  The range is from 100 ~ 5000 yen .
--distance means the distance between user and shop. The range is from 0.1 ~ 10.0 km, which is computed by "distance.py"
--end_time means the how long the discount will expire.  The range is from 1 ~ 30 days. For example, "2" means 2 days
-later this discount will expire.
-
-
-
-# location_info.csv
-
-Description:collecting the latitude and longitude of shops, which could come from shop table.
-
-[latitude, longitude]
-
--latitude of the shop. The range is from 34.8344 ~ 35.0753
--longitude of the shop. The range is from 135.5000-135.8200
-
-
 # training_data
 
 Description: collection the preference of users, we use 100 data to train. It will be added by clicking
@@ -38,7 +13,8 @@ Description: collection the preference of users, we use 100 data to train. It wi
 //- gender, man or woman, man denoted as 1, woman denoted as 0
 //- occupation has four types : no job, part-time job, full-time job, denoted as 0, 1, 2 respectively.
 
-# recommend.csv
+
+# data for recommend
 
 Description: we get this table  for recommendation system
 [food_id,price, distance, end_time, category, gender, occupation]
