@@ -11,7 +11,7 @@ export default {
   },
   actions: {
     toogle_sidebar: ({ commit }, sidebarOpen) => {
-      commit('SET_SEARCH', sidebarOpen)
+      commit('TOOGLE_SIDEBAR', sidebarOpen)
     },
   },
   getters: {

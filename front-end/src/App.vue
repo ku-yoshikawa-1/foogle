@@ -4,11 +4,11 @@
       app
       fixed
       clipped
-      v-model="drawer"
+      v-model="sidebarOpen"
       class="grey lighten-4"
     >
       <!-- Restaurants list -->
-      <app-restaurants-list></app-restaurants-list>
+      <app-sidebar></app-sidebar>
     </v-navigation-drawer>
 
     <v-toolbar color="#4169E1" app absolute clipped-left>
@@ -32,16 +32,19 @@
 <script>
   import SearchBar from './components/SearchBar'
   import GoogleMap from './components/GoogleMap'
-  import RestaurantsList from './components/RestaurantsList'
+  import Sidebar from './components/Sidebar'
+  import { mapGetters } from 'vuex'
 
   export default {
-    data: () => ({
-      drawer: null,
-    }),
+    computed: {
+      ...mapGetters([
+        'sidebarOpen',
+      ])
+    },
     components: {
       appSearchBar: SearchBar,
       appGoogleMap: GoogleMap,
-      appRestaurantsList: RestaurantsList,
+      appSidebar: Sidebar,
     }
   }
 </script>

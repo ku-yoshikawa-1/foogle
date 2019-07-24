@@ -61,8 +61,6 @@
     }),
     computed: {
       ...mapGetters([
-        'search',
-        'type',
         'markers',
       ])
     },

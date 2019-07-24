@@ -31,7 +31,7 @@
         <v-btn
           color="error"
           class="search-btn"
-          @click="getRestaurantMarkers"
+          @click="getBargains"
         >
           Search
         </v-btn>
@@ -42,17 +42,23 @@
 
 <script>
   import axios from 'axios'
+  import { mapGetters } from 'vuex'
   import { eventManager } from '../main'
 
   export default {
     data: () => ({
-      search: 'ほうれん草',
+      search: '',
       type: 'Recommender',
       types: ['Recommender','Products','Shops'],
       searchResults:[]
     }),
+    computed: {
+      ...mapGetters([
+        'sidebarOpen',
+      ])
+    },
     methods: {
-      getRestaurantMarkers () {
+      getBargains () {
         axios.get(`/bargains`, {
           params: {
             product: this.search,
@@ -90,6 +96,7 @@
               this.$store.dispatch('initSearch', this.search)
               this.$store.dispatch('initType', this.type)
               this.$store.dispatch('initMarkers', markers)
+              this.$store.dispatch('toogle_sidebar', true)
 
               // Updates center position of the map
               eventManager.$emit('updateCenterPosition', markers[0].position)
