@@ -1,9 +1,10 @@
 export default {
   state () {
     return {
-      search: 'ほうれん草',
+      search: '',
       type: 'Recommender',
       markers: [],
+      sidebarOpen: false
     }
   },
   mutations: {
