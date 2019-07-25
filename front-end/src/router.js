@@ -1,27 +1,33 @@
-
 import Vue from 'vue'
 import Router from 'vue-router'
-import GoogleMap from './components/GoogleMap'
-import ShopInfo from './components/ShopInfo'
+import Home from './views/Home.vue'
+import Search from './views/Search.vue'
 
- Vue.use(Router)
+Vue.use(Router)
 
- export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'Search',
-      component: GoogleMap
-    },
-    {
-      path: '/shop/:shop_name',
-      name: 'Shop',
-      component: ShopInfo,
-      props: route => ({
-        name: String(route.params.shop_name)
-      })
-    }
-  ]
+export default new Router({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            // path: '/',
+            path: '/search/:searchText',
+            name: 'search',
+            // route level code-splitting
+            // this generates a separate chunk (search.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            // component: () => import(/* webpackChunkName: "search" */ './views/Search.vue')
+            component: Search
+        },
+        // {
+        //     path: '/detail/:ID',
+        //     name: 'detail',
+        //     component: Detail
+        // },
+    ]
 })

@@ -2,12 +2,12 @@
   <v-form :style="{ width: '100%' }">
     <v-layout align-start justify-start row mt-2>
       <!-- Search box -->
-      <v-flex md6>
+      <v-flex md8>
         <v-text-field
           solo
           flat
           hide-details
-          v-model="query"
+          v-model="search"
           label="Type food name"
           prepend-inner-icon="search"
         ></v-text-field>
@@ -21,8 +21,8 @@
           label="Category"
           item-text="text"
           item-value="value"
-          :items="searchTypes"
-          v-model="searchType"
+          :items="types"
+          v-model="type"
         ></v-select>
       </v-flex>
 
@@ -31,7 +31,7 @@
         <v-btn
           color="error"
           class="search-btn"
-          @click="getBargains"
+          @click="getRestaurantMarkers"
         >
           Search
         </v-btn>
@@ -42,27 +42,22 @@
 
 <script>
   import axios from 'axios'
-  import { mapGetters } from 'vuex'
   import { eventManager } from '../main'
 
   export default {
-    data: () => ({
-      query: '',
-      searchType: 'Recommender',
-      searchTypes: ['Recommender','Products','Shops'],
-      searchResults:[],
-    }),
-    computed: {
-      ...mapGetters([
-        'sidebarOpen',
-      ])
+    data() {
+      return{
+        search: this.$route.params.searchText,
+        type: 'Recommender',
+        types: ['Recommender','Products','Shops'],
+        searchResults:[]
+      }
     },
     methods: {
-      getBargains () {
-        console.log('ok')
+      getRestaurantMarkers () {
         axios.get(`/bargains`, {
           params: {
-            product: this.query,
+            product: this.search,
           }
         })
           .then(response => {
@@ -94,10 +89,9 @@
               })
 
               // Initializes various states
-              this.$store.dispatch('setQuery', this.query)
-              this.$store.dispatch('setSearchType', this.searchType)
-              this.$store.dispatch('setMarkers', markers)
-              this.$store.dispatch('toogle_sidebar', true)
+              this.$store.dispatch('initSearch', this.search)
+              this.$store.dispatch('initType', this.type)
+              this.$store.dispatch('initMarkers', markers)
 
               // Updates center position of the map
               eventManager.$emit('updateCenterPosition', markers[0].position)

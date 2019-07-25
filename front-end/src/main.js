@@ -6,10 +6,10 @@ import store from './store/store'
 
 // Makes the vue's event manager available
 // across the app
-export const eventManager = new Vue
+export const eventManager = new Vue;
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 
 new Vue({
