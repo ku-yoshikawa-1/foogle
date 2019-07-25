@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 from recommend import recommend
+from recom import manage
 import sys
 
 app = Flask(__name__)
@@ -54,15 +55,12 @@ def product():
 def bargain():
   product = request.args.get('product')
   shop = request.args.get('shop')
+  bargain_ids = manage.main(product)
   cur = mysql.connection.cursor()
-  query = ''
-  if product and shop:
-    query = '''SELECT * FROM db.bargain_info WHERE product_name = \'%s\' AND shop_name = \'%s\' ''' % (product, shop)
-  elif product:
-    query = '''SELECT * FROM db.bargain_info WHERE product_name = \'%s\'''' % (product)
-  elif shop:
-    query = '''SELECT * FROM db.bargain_info WHERE shop_name = \'%s\' ''' % (shop)
-
+  print(type(bargain_ids), file=sys.stderr)
+  values = ', '.join(list(map(lambda x: str(x), bargain_ids)))
+  
+  query = "SELECT * FROM db.bargain_info WHERE id IN (%s)" % (values)
   cur.execute(query)
   rv = cur.fetchall()
   response = []
@@ -83,6 +81,11 @@ def search():
   products = request.args.get('products').split(',') if request.args.get('products') else ()
   shops = request.args.get('shops').split(',') if request.args.get('shops') else ()
   return recommend(products, shops, mysql)
+
+@app.route('/like')
+def like():
+  bargain = request.args.get('bargain_id')
+  return 'ok'
 
 if __name__ == '__main__':
   app.run(debug=True,host='0.0.0.0')

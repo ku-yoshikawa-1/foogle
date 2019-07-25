@@ -9,13 +9,14 @@ from keras.optimizers import Adagrad
 from keras.utils import to_categorical
 import pymysql
 from math import radians, cos, sin, asin, sqrt
+import sys
 
 all_info = []
 # id,product_name,shop_name,price,end_time,latitude,longitude
 
 # connect with mysql
 def get_conn():
-    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='admin', db='db')    # db:表示数据库名称
+    conn = pymysql.connect(host='mysql', port=3306, user='root', passwd='admin', db='db')    # db:表示数据库名称
     return conn
 
 
@@ -108,9 +109,8 @@ def get_recommenddata():
 
 # input the training data, which is static csv file
 def get_trainingdata():
-    train_data = genfromtxt('training_data.csv', delimiter=',')
+    train_data = genfromtxt('/root/recom/training_data.csv', delimiter=',')
     return train_data
-
 
 # get the training model of a user
 def training():
@@ -165,20 +165,19 @@ def recommend():
 
     y_pred_one_hot = network.predict(X_input)
     y_pred = np.argmax(y_pred_one_hot, axis=1)
+    bargain_ids=[]
     for i in range(len(X_input)):
         if y_pred[i]== 1:
-            print(index[i])
-    return index[i]
+            bargain_ids.append(int(index[i]))
 
-
+    return bargain_ids
 
 def main(product_name):
     get_allinfo(product_name)
-    recommend()
-
+    bargain_ids = recommend()
+    return bargain_ids
 
 #  this is main function. you need to input this argument.  use API
-main(product_name)
 
 
 
