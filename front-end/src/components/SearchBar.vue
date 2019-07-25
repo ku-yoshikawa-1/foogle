@@ -45,12 +45,14 @@
   import { eventManager } from '../main'
 
   export default {
-    data: () => ({
-      search: 'ほうれん草',
-      type: 'Recommender',
-      types: ['Recommender','Products','Shops'],
-      searchResults:[]
-    }),
+    data() {
+      return{
+        search: this.$route.params.searchText,
+        type: 'Recommender',
+        types: ['Recommender','Products','Shops'],
+        searchResults:[]
+      }
+    },
     methods: {
       getRestaurantMarkers () {
         axios.get(`/bargains`, {

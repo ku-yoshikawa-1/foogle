@@ -82,7 +82,6 @@
         axios.get('/bargains', {
           params: {
             product: this.search,
-            start: this.start,
           }
         })
           .then(response => {
