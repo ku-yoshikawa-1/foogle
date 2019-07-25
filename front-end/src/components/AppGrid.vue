@@ -1,24 +1,42 @@
 <template>
-  <div class="scene -gallery" ref="gallery" id="app">
+  <v-layout wrap>
     <h1 ref="heading">{{shop}}</h1>
-    <div
-      @click="expand(item, $event)"
-      v-for="item in shop_markers"
-      class="item"
-      :key="item.product_name"
-      :data-key="item.product_name"
-      ref="itemimg"
-    >
+    <v-flex @click="expand(item, $event)"
+            v-for="item in shop_markers"
+            class="item"
+            :key="item.product_name"
+            :data-key="item.product_name"
+            ref="itemimg">
       <img :src="item.featuredImg" :alt="item.product_name" :ref="item.product_name">
-      <h4>{{ item.shop_name }}</h4>
-    </div>
+      <h4>{{ item.product_name }}</h4>
+    </v-flex>
     <app-details
-      v-if="isShowing && !isMobile"
-      :currentItem="currentItem"
-      :topImg="topImg"
-      :rects="rects"
+            v-if="isShowing && !isMobile"
+            :currentItem="currentItem"
+            :topImg="topImg"
+            :rects="rects"
     ></app-details>
-  </div>
+  </v-layout>
+<!--  <div class="scene -gallery" ref="gallery" id="app">-->
+<!--    <h1 ref="heading">{{shop}}</h1>-->
+<!--    <div-->
+<!--      @click="expand(item, $event)"-->
+<!--      v-for="item in shop_markers"-->
+<!--      class="item"-->
+<!--      :key="item.product_name"-->
+<!--      :data-key="item.product_name"-->
+<!--      ref="itemimg"-->
+<!--    >-->
+<!--      <img :src="item.featuredImg" :alt="item.product_name" :ref="item.product_name">-->
+<!--      <h4>{{ item.shop_name }}</h4>-->
+<!--    </div>-->
+<!--    <app-details-->
+<!--      v-if="isShowing && !isMobile"-->
+<!--      :currentItem="currentItem"-->
+<!--      :topImg="topImg"-->
+<!--      :rects="rects"-->
+<!--    ></app-details>-->
+<!--  </div>-->
 </template>
 
 <script>

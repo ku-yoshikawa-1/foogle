@@ -31,14 +31,14 @@
       <app-search-bar></app-search-bar>
     </v-toolbar>
 
-    <v-content>
+    <v-content clipped-left>
       <v-container fluid fill-height class="grey lighten-4">
         <v-layout>
           <!-- Google map -->
           <app-google-map></app-google-map>
         </v-layout>
       </v-container>
-<!--      <app-grid></app-grid>-->
+      <app-grid></app-grid>
     </v-content>
   </v-app>
 </template>
