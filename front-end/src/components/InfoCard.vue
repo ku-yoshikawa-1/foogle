@@ -21,7 +21,7 @@
     <v-card-title primary-title>
       <div>
           <h3 class="headline mb-0">{{ marker.product_name }}</h3>
-          <p><a :href="marker.url" target="_blank">From: {{ marker.shop_name }}</a></p>
+          <p><router-link v-bind:to="{ name: 'Shop', params: { shop_name: marker.shop_name}}">From: {{ marker.shop_name }}</router-link></p>
           <div class="font_bk">
               <p><strong>Price: {{ marker.price }}</strong></p>
               <div>Original Price: {{ marker.ori_price }}</div>

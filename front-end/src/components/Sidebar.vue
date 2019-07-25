@@ -38,6 +38,9 @@
           <v-list-tile-sub-title>Original Price: {{ marker.ori_price }}</v-list-tile-sub-title>
           <v-list-tile-sub-title>Quantity: {{ marker.pack_ll }} to {{ marker.pack_ul }}</v-list-tile-sub-title>
         </v-list-tile-content>
+        <v-btn class="ma-2" text icon color="blue lighten-2">
+          <v-icon @click='onLike'>thumb_up</v-icon>
+        </v-btn>
       </v-list-tile>
 
       <!-- Restaurant divider -->
@@ -54,6 +57,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import { eventManager } from '../main'
+  import axios from 'axios'
 
   export default {
     data: () => ({
@@ -67,6 +71,13 @@
     methods: {
       onClickList(marker, index) {
         eventManager.$emit('isRestaurantClicked', marker, index)
+      },
+      onLike(marker) {
+        axios.get(`/like`, {
+          params: {
+            bargain_id: marker.id,
+          }
+        })
       }
     }
   }

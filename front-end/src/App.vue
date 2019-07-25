@@ -13,7 +13,9 @@
 
     <v-toolbar color="#4169E1" app absolute clipped-left>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+      <router-link to="/">
       <span class="title ml-3 mr-5" :style="{ color: '#ffffff' }"><span class="font-weight-light">Let's</span>&nbsp;Foogle</span>
+      </router-link>
       <!-- Search bar -->
       <app-search-bar></app-search-bar>
     </v-toolbar>

@@ -1,11 +1,15 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="bargains"
-    :items-per-page="10"
-    class="elevation-1"
-  >
-  </v-data-table>
+  <div>
+    <router-link to="/">Back</router-link>
+    <ul id="example-1">
+      <li
+        v-for="bargain in bargains"
+        v-bind:key="bargain.id"
+      >
+        {{ bargain.product_name }} / {{ bargain.price }} / {{ bargain.item_size }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

@@ -59,6 +59,7 @@
     },
     methods: {
       getBargains () {
+        console.log('ok')
         axios.get(`/bargains`, {
           params: {
             product: this.query,
