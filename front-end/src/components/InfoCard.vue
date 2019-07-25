@@ -19,9 +19,9 @@
 
     <!-- Card details -->
     <v-card-title primary-title>
-      <div>
+      <v-list-tile-content>
           <h3 class="headline mb-0">{{ marker.product_name }}</h3>
-          <button :href="marker.url" target="_blank" @click="getShopMarkers">From: {{ marker.shop_name }}</button>
+          <button @click="getShopMarkers"><router-link v-bind:to="{ name: 'Shop', params: { shop_name: marker.shop_name}}">From: {{ marker.shop_name }}</router-link></button>
           <div class="font_bk">
               <p><strong>Price: {{ marker.price }}</strong></p>
               <div>Original Price: {{ marker.ori_price }}</div>
@@ -30,8 +30,13 @@
               <div>Distance: 1.3KM</div>
               <div>Deadline: {{ marker.end_time }}</div>
           </div>
-      </div>
+      </v-list-tile-content>
     </v-card-title>
+    <v-card-actions>
+      <v-btn class="ma-2" text icon color="blue lighten-2">
+        <v-icon @click='onLike'>thumb_up</v-icon>
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -89,6 +94,13 @@
                 .catch(error => {
                     alert(error.message)
                 })
+        },
+        onLike(marker) {
+          axios.get(`/like`, {
+            params: {
+              bargain_id: marker.id,
+            }
+          })
         }
     }
   }
