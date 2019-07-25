@@ -17,6 +17,7 @@
             doSearch(){
 
                 if (this.searchText!=="") {
+                    this.$store.dispatch('initSearch', this.searchText)
                     this.$router.push(`/search/${this.searchText}`)
 
                 }

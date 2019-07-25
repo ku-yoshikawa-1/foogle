@@ -26,8 +26,9 @@
 
     <v-toolbar color="#4169E1" app absolute clipped-left>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <span class="title ml-3 mr-5" :style="{ color: '#ffffff' }"><span class="font-weight-light">Let's</span>Foogle</span>
-      <!-- Search bar -->
+      <router-link to="/">
+        <span class="title ml-3 mr-5" :style="{ color: '#ffffff' }"><span class="font-weight-light">Let's</span>Foogle</span>
+      </router-link>
       <app-search-bar></app-search-bar>
     </v-toolbar>
 
@@ -54,6 +55,9 @@
     data: () => ({
       drawer: null,
     }),
+    props:{
+      searchText: String
+    },
     components: {
       appSearchBar: SearchBar,
       appGoogleMap: GoogleMap,

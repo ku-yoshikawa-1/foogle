@@ -55,11 +55,29 @@ def product():
 def bargain():
   product = request.args.get('product')
   shop = request.args.get('shop')
+  if not product:
+    query = '''SELECT * FROM db.bargain_info WHERE shop_name = \'%s\' ''' % (shop)
+    cur = mysql.connection.cursor()
+    cur.execute(query)
+    rv = cur.fetchall()
+    response = []
+    for row in rv:
+      shop_name = row[2]
+      cur.execute('''SELECT * FROM db.shop_info
+          WHERE shop_name = \'%s\'''' % (shop_name))
+      shop_rv = cur.fetchall()[0]
+      shop_info = tuple([shop_rv[2], shop_rv[3], shop_rv[6], shop_rv[7]])
+      response.append(row + shop_info)
+
+    col = ('id', 'product_name', 'shop_name', 'price', 'end_time', 'price_peritem', 'pack_ll', 'pack_ul', 'pack_size', \
+        'item_size', 'pack_type', 'latitude', 'longitude', 'shop_url', 'shop_img')
+  
+    return jsonify(list(map(lambda x: dict(zip(col, x)), response)))
+    
   bargain_ids = manage.main(product)
   cur = mysql.connection.cursor()
   print(type(bargain_ids), file=sys.stderr)
   values = ', '.join(list(map(lambda x: str(x), bargain_ids)))
-  
   query = "SELECT * FROM db.bargain_info WHERE id IN (%s)" % (values)
   cur.execute(query)
   rv = cur.fetchall()

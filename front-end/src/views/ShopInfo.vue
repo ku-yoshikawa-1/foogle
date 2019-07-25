@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/">Back</router-link>
-    <ul id="example-1">
+    <ul>
       <li
         v-for="bargain in bargains"
         v-bind:key="bargain.id"
@@ -12,11 +12,10 @@
   </div>
 </template>
 
-<script>
+ <script>
   import axios from 'axios'
   //import { mapGetters } from 'vuex'
-
-  export default {
+   export default {
     name: 'shop',
     data () {
       return {
@@ -61,7 +60,7 @@
                 },
               }
             })
-
+             console.log(bargains)
             this.bargains = bargains
             
           }
@@ -70,6 +69,5 @@
           alert(error.message)
         })
     },
-
-  }
-</script>
+   }
+</script> 

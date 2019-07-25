@@ -5,7 +5,7 @@
       <!-- Restaurant list -->
       <v-list-tile
         ripple
-        :key="marker.product_name"
+        :key="marker.id"
         @click="onClickList(marker, index)"
       >
         <!-- Restaurant avatar -->
